@@ -2,13 +2,6 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Sky } from "three/addons/objects/Sky.js";
 import { Timer } from "three/addons/misc/Timer.js";
-import GUI from "lil-gui";
-
-/**
- * Base
- */
-// Debug
-const gui = new GUI();
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -185,18 +178,6 @@ const door = new THREE.Mesh(
 );
 door.position.y = 1;
 door.position.z = walls.position.z + 2.01;
-gui
-	.add(door.material, "displacementScale")
-	.min(0)
-	.max(1)
-	.step(0.0001)
-	.name("door displacement scale");
-gui
-	.add(door.material, "displacementBias")
-	.min(-1)
-	.max(1)
-	.step(0.0001)
-	.name("door displacement bias");
 
 const bushGeometry = new THREE.SphereGeometry(1, 16, 16);
 const bushMaterial = new THREE.MeshStandardMaterial({
@@ -261,29 +242,16 @@ for (let i = 0; i < 50; i++) {
 	graves.add(grave);
 }
 
-const sky = new Sky()
-sky.material.uniforms['turbidity'].value = 10
-sky.material.uniforms['rayleigh'].value = 3
-sky.material.uniforms['mieCoefficient'].value = 0.1
-sky.material.uniforms['mieDirectionalG'].value = 0.95
-sky.material.uniforms['sunPosition'].value.set(0.3, -0.038, -0.95)
-sky.scale.set(100, 100, 100)
-scene.add(sky)
+const sky = new Sky();
+sky.material.uniforms["turbidity"].value = 10;
+sky.material.uniforms["rayleigh"].value = 3;
+sky.material.uniforms["mieCoefficient"].value = 0.1;
+sky.material.uniforms["mieDirectionalG"].value = 0.95;
+sky.material.uniforms["sunPosition"].value.set(0.3, -0.038, -0.95);
+sky.scale.set(100, 100, 100);
+scene.add(sky);
 
-scene.fog = new THREE.Fog('#02343f', 1, 25)
-
-gui
-	.add(floor.material, "displacementScale")
-	.min(0)
-	.max(1)
-	.step(0.0001)
-	.name("floor displacement scale");
-gui
-	.add(floor.material, "displacementBias")
-	.min(-1)
-	.max(1)
-	.step(0.0001)
-	.name("floor displacement bias");
+scene.fog = new THREE.Fog("#02343f", 1, 25);
 
 // Ambient light
 const ambientLight = new THREE.AmbientLight("#8fcdff", 0.275);
@@ -306,10 +274,6 @@ const directionalLightCameraHelper = new THREE.CameraHelper(
 	directionalLight.shadow.camera
 );
 directionalLightCameraHelper.visible = false;
-gui
-	.add(directionalLightCameraHelper, "visible")
-	.name("directionalLightCameraHelper");
-scene.add(directionalLightCameraHelper);
 
 const doorLight = new THREE.PointLight("#ff7d46", 5);
 doorLight.position.set(0, 2.2, 2.5);
@@ -348,9 +312,6 @@ window.addEventListener("resize", () => {
 	renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 });
 
-/**
- * Camera
- */
 // Base camera
 const camera = new THREE.PerspectiveCamera(
 	75,
