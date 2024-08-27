@@ -2,6 +2,8 @@
 
 This scene creates an eerie haunted house environment using **Three.js**, highlighting the use of textures, materials, and lighting to craft a spooky atmosphere. The project focuses on the application of various maps and lights to enhance realism and performance.
 
+**DEMO: https://haunted-house-scene-three-i4ggzup0i-byteuth-001.vercel.app/**
+
 ## Textures and Materials
 
 In this scene, multiple texture maps are utilized to add depth and realism to the environment:
